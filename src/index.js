@@ -12,18 +12,28 @@ function App() {
   const [palpite, setPalpite] = useState(150);
   const [numPalpites, setNumPalpites] = useState(1);
   const [min, setMin] = useState(0);
-  const [max, setMax] = useState(300);
+  const [max, setMax] = useState(301);
 
   const iniciarJogo = () => {
     setEstado("RODANDO");
     setMin(0);
-    setMax(300);
+    setMax(301);
     setNumPalpites(1);
     setPalpite(150);
   };
 
   if (estado === "ENTRADA") {
-    return <button onClick={iniciarJogo}>Começar a jogar.</button>;
+    return (
+      <div className="App">
+        <p>
+          Pense em um número de 0 à 300 e deixe a máquina descobrir o que foi
+          pensado.
+        </p>
+        <button className="buttonBlue" onClick={iniciarJogo}>
+          Começar a jogar.
+        </button>
+      </div>
+    );
   }
 
   const menor = () => {
@@ -46,21 +56,33 @@ function App() {
 
   if (estado === "FIM") {
     return (
-      <div>
+      <div className="App">
         <p>
-          Acertei o número {palpite} com {numPalpites} chutes
+          Acertei o número {palpite} com {numPalpites} chutes.
         </p>
-        <button onClick={iniciarJogo}>Iniciar novamente!</button>
+        <button className="buttonBlue" onClick={iniciarJogo}>
+          Iniciar novamente!
+        </button>
       </div>
     );
   }
 
   return (
     <div className="App">
-      <p>O seu número é {palpite}</p>
-      <button onClick={menor}>Menor!</button>
-      <button onClick={acertou}>Acertou!</button>
-      <button onClick={maior}>Maior!</button>
+      <p>O seu número é {palpite}?</p>
+      <button className="buttonBlue" onClick={menor}>
+        Menor!
+      </button>
+      <button
+        className="buttonBlue"
+        style={{ marginLeft: "8px", marginRight: "8px" }}
+        onClick={acertou}
+      >
+        Acertou!
+      </button>
+      <button className="buttonBlue" onClick={maior}>
+        Maior!
+      </button>
     </div>
   );
 }
